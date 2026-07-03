@@ -7,7 +7,7 @@ namespace MyPlanTests
         [Fact]
         public void ShouldExitInteractionOnQuitCommand()
         {
-            var plan = new PlanCore.Plan("test_plan.txt");
+            var plan = new PlanCore.Plan("empty-plan.txt");
 
             // Simulate user typing 'q' (plus Enter) to quit the interaction.
             var originalIn = Console.In;
