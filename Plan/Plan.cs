@@ -31,50 +31,13 @@ namespace PlanCore
             }
         }
 
-        public void startInteraction()
-        {
-            char? operation;
-
-            bool exited = false;
-
-            do
-            {
-                printTasks();
-                
-                operation = readOperation();
-
-                switch (operation)
-                {
-                    case 'q':
-                        exited = true;
-                        break;
-                    default:
-                        Console.WriteLine($"Invalid operation \"{operation}\"");
-                        break;
-                }
-            }
-            while (!exited);
-        }
-
-        private void printTasks()
+        public void print()
         {
             for (int i = 0; i < Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {this[i].Name}");
             }
         }
-
-        private char? readOperation()
-        {
-            Console.Write("(q)uit? ");
-
-            char? operation = null;
-            string? input = Console.ReadLine();
-            if (!string.IsNullOrEmpty(input))
-            {
-                operation = input[0];
-            }
-            return operation;
-        }
+        
     }
 }
