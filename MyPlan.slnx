@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MyPlanTests/MyPlanTests.csproj" />
+  <Project Path="Plan/PlanCore.csproj" />
+  <Project Path="PlanManager/PlanManager.csproj" />
+</Solution>
