@@ -48,5 +48,30 @@ namespace MyPlanTests
                 Console.SetOut(originalOut);
             }
         }
-}
+
+        [Fact]
+        public void ShouldAddTaskOnCreateCommand()
+        {
+            var manager = new PlanManager.PlanManager("test-data/empty-plan.txt");
+            // Simulate user typing 'c' (plus Enter) to create a task, then 'q' to quit.
+            var originalIn = Console.In;
+            var originalOut = Console.Out;
+            try
+            {
+                using (var sw = new System.IO.StringWriter())
+                {
+                    Console.SetIn(new System.IO.StringReader("c" + Environment.NewLine + "New Task" + Environment.NewLine + "p" + Environment.NewLine + "q" + Environment.NewLine));
+                    Console.SetOut(sw);
+                    manager.startInteraction();
+                    var output = sw.ToString();
+                    Assert.Contains("New Task", output); // Ensure the new task is printed
+                }
+            }
+            finally
+            {
+                Console.SetIn(originalIn);
+                Console.SetOut(originalOut);
+            }
+        }
+    }
 }
