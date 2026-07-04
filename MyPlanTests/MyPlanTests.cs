@@ -7,7 +7,7 @@ namespace MyPlanTests
         [Fact]
         public void ShouldExitInteractionOnQuitCommand()
         {
-            var manager = new PlanManager.PlanManager(["test-data/empty-plan.txt"]);
+            var manager = new PlanManager.PlanManager("test-data/empty-plan.txt");
 
             // Simulate user typing 'q' (plus Enter) to quit the interaction.
             var originalIn = Console.In;
@@ -26,7 +26,7 @@ namespace MyPlanTests
         [Fact]
         public void ShouldPrintTasksOnPrintCommand()
         {
-            var manager = new PlanManager.PlanManager(["test-data/single-task.txt"]);
+            var manager = new PlanManager.PlanManager("test-data/single-task.txt");
             // Simulate user typing 'p' (plus Enter) to print tasks.
             var originalIn = Console.In;
             var originalOut = Console.Out;

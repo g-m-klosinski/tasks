@@ -4,7 +4,12 @@
     {
         private static void Main(string[] args)
         {
-            new PlanManager(args).startInteraction();
+            if (args.Length != 1)
+            {
+                Console.WriteLine("Usage: PlanManager [dataFilePath]");
+                return;
+            }
+            new PlanManager(args[0]).startInteraction();
         }
     }
 }

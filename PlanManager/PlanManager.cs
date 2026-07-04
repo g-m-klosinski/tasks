@@ -9,24 +9,8 @@ namespace PlanManager
     {
         PlanCore.Plan plan;
 
-        public PlanManager(string[] args)
+        public PlanManager(string dataFilePath)
         {
-            string dataFilePath;
-
-            if (args.Length == 1)
-            {
-                dataFilePath = args[0];
-            }
-            else
-            {
-                string userHomeDirectory =
-                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-
-                string dataFileName = "plan.txt";
-
-                dataFilePath = Path.Combine(userHomeDirectory, dataFileName);
-            }
-
             plan = new PlanCore.Plan(dataFilePath);
         }
 
