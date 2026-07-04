@@ -32,7 +32,7 @@ namespace PlanManager
 
         private char? readOperation()
         {
-            Console.Write("(q)uit? ");
+            Console.Write("Choose to (p)rint or (q)uit: ");
 
             char? operation = null;
             string? input = Console.ReadLine();
@@ -51,12 +51,13 @@ namespace PlanManager
 
             do
             {
-                plan.print();
-
                 operation = readOperation();
 
                 switch (operation)
                 {
+                    case 'p':
+                        plan.print();
+                        break;
                     case 'q':
                         exited = true;
                         break;

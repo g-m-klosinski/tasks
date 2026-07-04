@@ -35,7 +35,7 @@ namespace PlanCore
         {
             for (int i = 0; i < Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {this[i].Name}");
+                Console.WriteLine($"[{i + 1}]\t{this[i].Name}");
             }
         }
         
