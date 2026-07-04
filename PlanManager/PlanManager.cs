@@ -16,7 +16,7 @@ namespace PlanManager
 
         private char? readOperation()
         {
-            Console.Write("Choose to (p)rint or (q)uit: ");
+            Console.Write("Choose to (p)rint, (c)reate or (q)uit: ");
 
             char? operation = null;
             string? input = Console.ReadLine();
@@ -41,6 +41,19 @@ namespace PlanManager
                 {
                     case 'p':
                         plan.print();
+                        break;
+                    case 'c':
+                        Console.Write("Enter task name: ");
+                        string? taskName = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(taskName))
+                        {
+                            plan.Add(new PlanCore.Task { Name = taskName });
+                            Console.WriteLine($"Task \"{taskName}\" added.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Task name cannot be empty.");
+                        }
                         break;
                     case 'q':
                         exited = true;
