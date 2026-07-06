@@ -56,5 +56,26 @@ namespace MyPlanTests
                 Console.SetOut(originalOut);
             }
         }
+
+        [Fact]
+        public void ShouldHandleDeletion()
+        {
+            var manager = new PlanManager.PlanManager();
+
+            manager.plan.Add(new PlanCore.Task { Name = "Do the washing" });
+
+            var originalIn = Console.In;
+
+            try
+            {
+                Console.SetIn(new System.IO.StringReader("d" + Environment.NewLine + "1" + Environment.NewLine + "q" + Environment.NewLine));
+                manager.startInteraction();
+                Assert.Empty(manager.plan);
+            }
+            finally
+            {
+                Console.SetIn(originalIn);
+            }
+        }
     }
 }
