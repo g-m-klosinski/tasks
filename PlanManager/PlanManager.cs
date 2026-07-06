@@ -7,11 +7,17 @@ namespace PlanManager
 {
     public class PlanManager
     {
-        PlanCore.Plan plan;
+        string? dataFilePath;
+        public PlanCore.Plan plan;
 
+        public PlanManager() {
+            plan = new PlanCore.Plan();
+        }
+        
         public PlanManager(string dataFilePath)
         {
             plan = new PlanCore.Plan(dataFilePath);
+            this.dataFilePath = dataFilePath;
         }
 
         private char? readOperation()

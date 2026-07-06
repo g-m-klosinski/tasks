@@ -7,7 +7,9 @@ namespace MyPlanTests
         [Fact]
         public void ShouldPrintTasksOnPrintCommand()
         {
-            var manager = new PlanManager.PlanManager("test-data/single-task.txt");
+            var manager = new PlanManager.PlanManager();
+
+            manager.plan.Add(new PlanCore.Task { Name = "Do the washing"});
             // Simulate user typing 'p' (plus Enter) to print tasks.
             var originalIn = Console.In;
             var originalOut = Console.Out;
@@ -33,7 +35,7 @@ namespace MyPlanTests
         [Fact]
         public void ShouldAddTaskOnCreateCommand()
         {
-            var manager = new PlanManager.PlanManager("test-data/empty-plan.txt");
+            var manager = new PlanManager.PlanManager();
             // Simulate user typing 'c' (plus Enter) to create a task, then 'q' to quit.
             var originalIn = Console.In;
             var originalOut = Console.Out;

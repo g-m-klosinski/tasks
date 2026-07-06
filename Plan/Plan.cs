@@ -6,6 +6,7 @@ namespace PlanCore
 {
     public class Plan: List<Task>
     {
+        public Plan() { }
 
         public Plan(string fileName)
         {
