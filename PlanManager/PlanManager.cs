@@ -22,7 +22,7 @@ namespace PlanManager
 
         private char? readOperation()
         {
-            Console.Write("Choose to (p)rint, (c)reate, (d)elete or (q)uit: ");
+            Console.Write("(p)rint, (c)reate, (d)elete or (q)uit: ");
 
             char? operation = null;
             string? input = Console.ReadLine();
@@ -49,34 +49,10 @@ namespace PlanManager
                         plan.print();
                         break;
                     case 'c':
-                        Console.Write("Enter task name: ");
-                        string? taskName = Console.ReadLine();
-                        if (!string.IsNullOrEmpty(taskName))
-                        {
-                            plan.Add(new PlanCore.Task { Name = taskName });
-                            Console.WriteLine($"Task \"{taskName}\" added.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Task name cannot be empty.");
-                        }
+                        plan.createTask();
                         break;
                     case 'd':
-                        Console.Write("Enter the number of the task to be deleted:");
-                        int number;
-                        bool success = int.TryParse(Console.ReadLine(), out number);
-                        if (!success)
-                        {
-                            Console.WriteLine("Failed to parse the number.");
-                        }
-                        else if (number < 1 || number > plan.Count)
-                        {
-                            Console.WriteLine("The number is out of range.");
-                        }
-                        else
-                        {
-                            plan.RemoveAt(number - 1);
-                        }
+                        plan.deleteTask();
                         break;
                     case 'q':
                         exited = true;

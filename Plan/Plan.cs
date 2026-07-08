@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace PlanCore
@@ -40,5 +41,38 @@ namespace PlanCore
             }
         }
         
+        public void createTask()
+        {
+            Console.Write("Enter task name: ");
+            string? taskName = Console.ReadLine();
+            if (!string.IsNullOrEmpty(taskName))
+            {
+                Add(new Task { Name = taskName });
+                Console.WriteLine($"Task \"{taskName}\" added.");
+            }
+            else
+            {
+                Console.WriteLine("Task name cannot be empty.");
+            }
+        }
+
+        public void deleteTask()
+        {
+            Console.Write("Enter the number of the task to be deleted:");
+            int number;
+            bool success = int.TryParse(Console.ReadLine(), out number);
+            if (!success)
+            {
+                Console.WriteLine("Failed to parse the number.");
+            }
+            else if (number < 1 || number > Count)
+            {
+                Console.WriteLine("The number is out of range.");
+            }
+            else
+            {
+                RemoveAt(number - 1);
+            }
+        }
     }
 }
