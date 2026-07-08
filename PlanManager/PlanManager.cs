@@ -63,6 +63,11 @@ namespace PlanManager
                 }
             }
             while (!exited);
+
+            if (!string.IsNullOrEmpty(dataFilePath))
+            {
+                File.WriteAllText(dataFilePath, plan.toString());
+            }
         }
 
     }

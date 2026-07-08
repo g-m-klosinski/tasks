@@ -25,6 +25,10 @@ namespace PlanCore
 
             foreach (var taskText in planText.Split('\n'))
             {
+                if (string.IsNullOrEmpty(taskText))
+                {
+                    continue;
+                }
                 var task = new Task
                 {
                     Name = taskText
@@ -39,6 +43,19 @@ namespace PlanCore
             {
                 Console.WriteLine($"[{i + 1}]\t{this[i].Name}");
             }
+        }
+
+        public string toString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (var task in this)
+            {
+                stringBuilder.Append(task.Name);
+                stringBuilder.AppendLine();
+            }
+
+            return stringBuilder.ToString();
         }
         
         public void createTask()
