@@ -77,5 +77,11 @@ namespace MyPlanTests
                 Console.SetIn(originalIn);
             }
         }
+
+        [Fact]
+        public void ShouldHandleCompletion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
