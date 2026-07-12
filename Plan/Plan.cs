@@ -13,7 +13,7 @@ namespace PlanCore
         {
             for (int i = 0; i < Count; i++)
             {
-                Console.WriteLine($"[{i + 1}]\t{(this[i].IsCompleted ? "X" : " ")} {this[i].Name}");
+                Console.WriteLine($"[{i + 1, 2}] {(this[i].IsCompleted ? "X" : " ")} {this[i].Name}");
             }
         }
 
@@ -34,7 +34,7 @@ namespace PlanCore
 
         public void deleteTask()
         {
-            Console.Write("Enter the number of the task to be deleted:");
+            Console.Write("Enter the number of the task to be deleted: ");
             int number;
             bool success = int.TryParse(Console.ReadLine(), out number);
             if (!success)
@@ -53,7 +53,7 @@ namespace PlanCore
 
         public void completeTask()
         {
-            Console.Write("Enter the number of the task to be completed:");
+            Console.Write("Enter the number of the task to be completed: ");
             int number;
             bool success = int.TryParse(Console.ReadLine(), out number);
             if (!success)

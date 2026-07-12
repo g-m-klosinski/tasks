@@ -97,8 +97,8 @@ namespace MyPlanTests
                     Console.SetOut(sw);
                     manager.startInteraction();
                     var output = sw.ToString();
-                    Assert.Contains("[1]\tX ", output);
-                    Assert.DoesNotContain("[2]\tX ", output);
+                    Assert.Contains("[ 1] X ", output);
+                    Assert.DoesNotContain("[ 2] X ", output);
                 }
             }
             finally
