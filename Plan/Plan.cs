@@ -58,7 +58,7 @@ namespace PlanCore
             return stringBuilder.ToString();
         }
         
-        public void createTask()
+        public void addTask()
         {
             Console.Write("Enter task name: ");
             string? taskName = Console.ReadLine();

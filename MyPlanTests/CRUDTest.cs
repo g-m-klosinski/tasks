@@ -33,7 +33,7 @@ namespace MyPlanTests
         }
 
         [Fact]
-        public void ShouldAddTaskOnCreateCommand()
+        public void ShouldAddTaskOnAddCommand()
         {
             var manager = new PlanManager.PlanManager();
             // Simulate user typing 'c' (plus Enter) to create a task, then 'q' to quit.
@@ -43,7 +43,7 @@ namespace MyPlanTests
             {
                 using (var sw = new System.IO.StringWriter())
                 {
-                    Console.SetIn(new System.IO.StringReader("c" + Environment.NewLine + "New Task" + Environment.NewLine + "p" + Environment.NewLine + "q" + Environment.NewLine));
+                    Console.SetIn(new System.IO.StringReader("a" + Environment.NewLine + "New Task" + Environment.NewLine + "p" + Environment.NewLine + "q" + Environment.NewLine));
                     Console.SetOut(sw);
                     manager.startInteraction();
                     var output = sw.ToString();
@@ -90,7 +90,7 @@ namespace MyPlanTests
             {
                 using (var sw = new System.IO.StringWriter())
                 {
-                    Console.SetIn(new System.IO.StringReader("m" + Environment.NewLine + "1" + Environment.NewLine + "q" + Environment.NewLine));
+                    Console.SetIn(new System.IO.StringReader("c" + Environment.NewLine + "1" + Environment.NewLine + "q" + Environment.NewLine));
                     manager.startInteraction();
                     Assert.True(manager.plan[0].IsCompleted);
                 }
