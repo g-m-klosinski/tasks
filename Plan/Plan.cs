@@ -41,7 +41,7 @@ namespace PlanCore
         {
             for (int i = 0; i < Count; i++)
             {
-                Console.WriteLine($"[{i + 1}]\t{this[i].Name}");
+                Console.WriteLine($"[{i + 1}]\t{(this[i].IsCompleted ? "X" : " ")} {this[i].Name}");
             }
         }
 
