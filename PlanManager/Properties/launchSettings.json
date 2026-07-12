@@ -2,7 +2,7 @@
   "profiles": {
     "PlanManager": {
       "commandName": "Project",
-      "commandLineArgs": "my-plan.txt"
+      "commandLineArgs": "my-plan.json"
     }
   }
 }

@@ -2,40 +2,12 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using System.Text.Json;
 
 namespace PlanCore
 {
     public class Plan: List<Task>
     {
-        public Plan() { }
-
-        public Plan(string fileName)
-        {
-            ReadTasksFromFile(fileName);
-        }
-
-        private void ReadTasksFromFile(string fileName)
-        {
-            string planText = File.ReadAllText(fileName);
-
-            if(planText.Length == 0)
-            {
-                return;
-            }
-
-            foreach (var taskText in planText.Split('\n'))
-            {
-                if (string.IsNullOrEmpty(taskText))
-                {
-                    continue;
-                }
-                var task = new Task
-                {
-                    Name = taskText
-                };
-                Add(task);
-            }
-        }
 
         public void print()
         {
@@ -45,19 +17,6 @@ namespace PlanCore
             }
         }
 
-        public string toString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (var task in this)
-            {
-                stringBuilder.Append(task.Name);
-                stringBuilder.AppendLine();
-            }
-
-            return stringBuilder.ToString();
-        }
-        
         public void addTask()
         {
             Console.Write("Enter task name: ");
@@ -109,6 +68,12 @@ namespace PlanCore
             {
                 this[number - 1].IsCompleted = true;
             }
+        }
+
+        public void dump(string dataFilePath)
+        {
+            string json = JsonSerializer.Serialize(this);
+            File.WriteAllText(dataFilePath, json);
         }
     }
 }

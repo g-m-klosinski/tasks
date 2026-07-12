@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace PlanManager
 {
@@ -16,8 +17,18 @@ namespace PlanManager
         
         public PlanManager(string dataFilePath)
         {
-            plan = new PlanCore.Plan(dataFilePath);
-            this.dataFilePath = dataFilePath;
+            try
+            {
+                string json = File.ReadAllText(dataFilePath);
+
+                plan = JsonSerializer.Deserialize<PlanCore.Plan>(json);
+                this.dataFilePath = dataFilePath;
+            }
+            catch
+            {
+                Console.WriteLine($"Failed to parse {dataFilePath}");
+                Environment.Exit(1);
+            }
         }
 
         private char? readOperation()
@@ -69,7 +80,8 @@ namespace PlanManager
 
             if (!string.IsNullOrEmpty(dataFilePath))
             {
-                File.WriteAllText(dataFilePath, plan.toString());
+                //File.WriteAllText(dataFilePath, plan.toString());
+                plan.dump(dataFilePath);
             }
         }
 
