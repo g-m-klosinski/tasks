@@ -4,33 +4,6 @@ namespace MyPlanTests
 {
     public class CRUDTest
     {
-        [Fact]
-        public void ShouldPrintTasksOnPrintCommand()
-        {
-            var manager = new PlanManager.PlanManager();
-
-            manager.plan.Add(new PlanCore.Task { Name = "Do the washing"});
-            // Simulate user typing 'p' (plus Enter) to print tasks.
-            var originalIn = Console.In;
-            var originalOut = Console.Out;
-            try
-            {
-                using (var sw = new System.IO.StringWriter())
-                {
-                    Console.SetIn(new System.IO.StringReader("p" + Environment.NewLine + "q" + Environment.NewLine));
-                    Console.SetOut(sw);
-                    manager.startInteraction();
-                    var output = sw.ToString();
-                    Assert.Contains("[1]", output);
-                    Assert.DoesNotContain("[2]", output); // Ensure only one task is printed
-                }
-            }
-            finally
-            {
-                Console.SetIn(originalIn);
-                Console.SetOut(originalOut);
-            }
-        }
 
         [Fact]
         public void ShouldAddTaskOnAddCommand()
@@ -98,6 +71,40 @@ namespace MyPlanTests
             finally
             {
                 Console.SetIn(originalIn);
+            }
+        }
+
+        [Fact]
+        public void ShouldPrintCompletionStatus()
+        {
+            var manager = new PlanManager.PlanManager();
+
+            manager.plan.Add(new PlanCore.Task { Name = "Do the washing" });
+            manager.plan.Add(new PlanCore.Task { Name = "Do shopping" });
+
+            var originalIn = Console.In;
+            var originalOut = Console.Out;
+            try
+            {
+                using (var sw = new System.IO.StringWriter())
+                {
+                    Console.SetIn(new System.IO.StringReader(
+                        "c" + Environment.NewLine
+                        + "1" + Environment.NewLine
+                        + "p" + Environment.NewLine
+                        + "q" + Environment.NewLine)
+                        );
+                    Console.SetOut(sw);
+                    manager.startInteraction();
+                    var output = sw.ToString();
+                    Assert.Contains("[1]\tX ", output);
+                    Assert.DoesNotContain("[2]\tX ", output);
+                }
+            }
+            finally
+            {
+                Console.SetIn(originalIn);
+                Console.SetOut(originalOut);
             }
         }
     }
