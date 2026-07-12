@@ -8,7 +8,9 @@ Quick Start
 
 Use the application as follows:
 
-1. Create an empty file as a data base
+1. Create a JSON file for a data base:
+   ```
+   PS> "[]" > "my-plan.json"
 2. Point the file on run
    ```
    PlanManager.exe path\to\my-plan.txt
@@ -20,7 +22,3 @@ Motivation
 The project comes from
 https://codersera.com/blog/30-best-c-project-ideas-for-beginners-intermediate-and-advanced-level-professionals/
 list. The name there is "To-Do List Manager".
-
-Roadmap
--------
-1. Task completion feature
