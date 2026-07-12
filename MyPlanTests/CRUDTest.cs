@@ -81,7 +81,24 @@ namespace MyPlanTests
         [Fact]
         public void ShouldHandleCompletion()
         {
-            throw new NotImplementedException();
+            PlanManager.PlanManager manager = new();
+
+            manager.plan.Add(new PlanCore.Task { Name = "Do the washing" });
+
+            var originalIn = Console.In;
+            try
+            {
+                using (var sw = new System.IO.StringWriter())
+                {
+                    Console.SetIn(new System.IO.StringReader("m" + Environment.NewLine + "1" + Environment.NewLine + "q" + Environment.NewLine));
+                    manager.startInteraction();
+                    Assert.True(manager.plan[0].IsCompleted);
+                }
+            }
+            finally
+            {
+                Console.SetIn(originalIn);
+            }
         }
     }
 }
