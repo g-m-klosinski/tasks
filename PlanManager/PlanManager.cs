@@ -22,7 +22,7 @@ namespace PlanManager
 
         private char? readOperation()
         {
-            Console.Write("(p)rint, (c)reate, (d)elete or (q)uit: ");
+            Console.Write("(p)rint, (c)reate, co(m)plete, (d)elete or (q)uit: ");
 
             char? operation = null;
             string? input = Console.ReadLine();
@@ -53,6 +53,9 @@ namespace PlanManager
                         break;
                     case 'd':
                         plan.deleteTask();
+                        break;
+                    case 'm':
+                        plan.completeTask();
                         break;
                     case 'q':
                         exited = true;

@@ -91,5 +91,24 @@ namespace PlanCore
                 RemoveAt(number - 1);
             }
         }
+
+        public void completeTask()
+        {
+            Console.Write("Enter the number of the task to be completed:");
+            int number;
+            bool success = int.TryParse(Console.ReadLine(), out number);
+            if (!success)
+            {
+                Console.WriteLine("Failed to parse the number.");
+            }
+            else if (number < 1 || number > Count)
+            {
+                Console.WriteLine("The number is out of range.");
+            }
+            else
+            {
+                this[number - 1].IsCompleted = true;
+            }
+        }
     }
 }
